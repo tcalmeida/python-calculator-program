@@ -57,19 +57,25 @@ button9.grid(row=2, column=2)
 button0 = Button(frame, text=0, width=9, height=4, font=35, command=lambda: button_press(0))
 button0.grid(row=3, column=0)
 
-plus_button = Button(frame, text='+', width=9, height=4, font=35, command=lambda: button_press(1))
+plus_button = Button(frame, text='+', width=9, height=4, font=35, command=lambda: button_press('+'))
 plus_button.grid(row=0, column=3)
 
-subtraction_button = Button(frame, text='-', width=9, height=4, font=35, command=lambda: button_press())
+subtraction_button = Button(frame, text='-', width=9, height=4, font=35, command=lambda: button_press('-'))
 subtraction_button.grid(row=1, column=3)
 
-multiplication_button = Button(frame, text='*', width=9, height=4, font=35, command=lambda: button_press(1))
+multiplication_button = Button(frame, text='*', width=9, height=4, font=35, command=lambda: button_press('*'))
 multiplication_button.grid(row=2, column=3)
 
-division_button = Button(frame, text='/', width=9, height=4, font=35, command=lambda: button_press(1))
-division_button.grid(row=3, column=3)
+division_button = Button(frame, text='/', width=9, height=4, font=35, command=lambda: button_press('/'))
+division_button.grid(row=3, column=3, padx=8)
 
-equal_button = Button(frame, text='=',  width=19, height=4, font=35, command=lambda: equal_button())
-equal_button.grid(row=3, column=1, columnspan=2)
+equal_button = Button(frame, text='=',  width=9, height=4, font=35, command=lambda: equal_button())
+equal_button.grid(row=3, column=2)
+
+decimal_button = Button(frame, text='.',  width=9, height=4, font=35, command=lambda: button_press('.'))
+decimal_button.grid(row=3, column=1)
+
+clear_button = Button(window, text='clear', width=12, height=4, font=40, command=reset() )
+clear_button.pack(pady=15)
 
 window.mainloop()
