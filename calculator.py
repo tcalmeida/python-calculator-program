@@ -1,16 +1,34 @@
 from tkinter import *
 
 
-def button_press(num):
-    pass
+def button_press(number):
+    global display_text
+    display_text += str(number)
+    display_label.set(display_text)
 
 
 def result():
-    pass
+    global display_text
+
+    try:
+        total = str(eval(display_text))
+        display_label.set(total)
+        display_text = total
+
+    except ZeroDivisionError:
+        display_label.set("Can't divide by zero")
+        display_text = ''
+
+    except SyntaxError:
+        display_label.set("Syntax Error")
+        display_text = ''
 
 
 def reset():
-    pass
+    global display_text
+
+    display_label.set('')
+    display_text = ''
 
 
 window = Tk()
@@ -18,10 +36,9 @@ window.title('Calculator')
 window.geometry('500x500')
 
 display_text = ""
-
 display_label = StringVar()
 
-label = Label(window, textvariable=display_label, font=('Arial', 20), bg='white', width=24, height=2, pady=5)
+label = Label(window, textvariable=display_label, font=('Arial ', 20), bg='white', width=24, height=2, pady=5)
 label.pack(pady=10)
 
 frame = Frame(window)
@@ -69,13 +86,13 @@ multiplication_button.grid(row=2, column=3)
 division_button = Button(frame, text='/', width=9, height=4, font=35, command=lambda: button_press('/'))
 division_button.grid(row=3, column=3, padx=8)
 
-equal_button = Button(frame, text='=',  width=9, height=4, font=35, command=lambda: equal_button())
+equal_button = Button(frame, text='=', width=9, height=4, font=35, command=lambda: result())
 equal_button.grid(row=3, column=2)
 
-decimal_button = Button(frame, text='.',  width=9, height=4, font=35, command=lambda: button_press('.'))
+decimal_button = Button(frame, text='.', width=9, height=4, font=35, command=lambda: button_press('.'))
 decimal_button.grid(row=3, column=1)
 
-clear_button = Button(window, text='clear', width=12, height=4, font=40, command=reset() )
+clear_button = Button(window, text='clear', width=12, height=4, font=40, command=lambda: reset())
 clear_button.pack(pady=15)
 
 window.mainloop()
